@@ -81,13 +81,18 @@ You can see all your images with `docker images` whereas you can see your runnin
 So a running instance of an image is a container.
 
 **What's an Image?**
+
 An image is an inert, immutable, file that's essentially a snapshot of a container. Images are created with the build command, and they'll produce a container when started with run. Images are stored in a Docker registry such as registry.hub.docker.com. Because they can become quite large, images are designed to be composed of layers of other images, allowing a minimal amount of data to be sent when transferring images over the network.
 
 Local images can be listed by running `docker images`.
 
 **What's a container?**
+
+
 To use a programming metaphor, if an image is a class, then a container is an instance of a class—a runtime object. Containers are hopefully why you're using Docker; they're lightweight and portable encapsulations of an environment in which to run applications.
 
 View local running containers with `docker ps`.
 
 ![image vs container](https://i.stack.imgur.com/Cx1eo.png)
+
+
