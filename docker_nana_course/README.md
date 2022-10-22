@@ -10,7 +10,7 @@ Link: https://youtu.be/3c-iBn73dDE
 2. [What is a Container/Image](#what-is-container-technically)
     1. [Docker Image vs Container](#docker-image-vs-container)
     2. [Note **](#note1)
-3. [Docker vs Virtal Machine]()
+3. [Docker vs Virtal Machine](#docker-vs-virtal-machine)
 4. [Docker Installation]()
 5. [Docker Main commands]()
 6. [Debugging a Container]()
@@ -129,3 +129,14 @@ So:
 - Docker images are based on Linux kernel (base layer), so there is no compatibility between them and the windows kernel nativly.
 - We can use `Docker toolbox ` which is : " Docker Toolbox allows you to deploy development containers in legacy Windows systems that do not meet the requirements of the new Docker for Windows application."
 
+------------------------------
+
+### Docker Installation
+
+[24:00 -> 42:00]
+
+1. **Docker pre-requisites** 
+2. **Installing Docker on Mac** 
+3. **installing Docker on Windows** 
+4. **installing Docker on Linux** 
+5. **Docker Toolbox** 
