@@ -135,8 +135,20 @@ So:
 
 [24:00 -> 42:00]
 
-1. **Docker pre-requisites** 
+https://docs.docker.com/get-docker/ 
+
+1. **Docker pre-requisites**
 2. **Installing Docker on Mac** 
+    - https://docs.docker.com/desktop/install/mac-install/
 3. **installing Docker on Windows** 
+    - https://docs.docker.com/desktop/install/windows-install/ 
 4. **installing Docker on Linux** 
-5. **Docker Toolbox** 
+    - https://docs.docker.com/desktop/install/linux-install/ 
+5. **Docker Toolbox** : a bridge between the System and Docker if the OS does not support Docker.
+
+:warning: "Deprecation Notice: This project and repository is now deprecated and is no longer in active development. Please use Docker Desktop instead where possible. Docker Desktop"
+https://github.com/docker-archive/toolbox 
+
+Getting Docker : `Docker version 20.10.18, build b40c2f6` Installed on my Windows 10 machine.
+
+
