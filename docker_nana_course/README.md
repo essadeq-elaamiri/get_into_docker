@@ -187,10 +187,13 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker run -d redis`|Run a Container for `redis` image (in the background / detached mode)|
 |`docker run -d redis:4.0.1`|Runs the redis of version 4.0.1, if not avaailable, pulls it first (d for detached)|
 |`docker run -p <host-port>:<container-port> redis`|Runs the redis image, binding the ports (p for port)|
+|`docker run --name redis-older redis `| Run Container  with costum name (redis-older)|
 |`docker ps`| List the running contaniers|
 |`docker stop <container-id>`| Stop the container (first 4 chars of ID are enough)|
 |`docker start <container-id>`| Start the container|
 |`docker ps -a`| Show all the Containers (Running or Not)|
+|`docker logs <container-id/name>`|Troubleshooting the container|
+|`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[`exit`: to exit the mode]|
 
 
 4. **Container PORT vs host PORT**
@@ -203,4 +206,10 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 - That will avoid us the conflict when we use for example the same image in different containers (ability to use diffirent ports).
 - "Example, we need version 1 of `appX` and version 2, and they both listenning to 7777, we can avoid the conflict by binding the `appX:1` to host port 77 and the `appX:2` to port 777."
 - The command to do that : `docker run -d -p 77:7777 appX:1` and `docker run -d -p 777:7777 appX:2`, now the host port 77 is binded to the container port 7777.
+
+5. **Debugging a container**
+
+- Troubleshooting the container with `docker logs <container-id/name>`.
+- Get the terminal of the runing container by: `docker exec -it <container-id/name> /bin/bash `.
+
 
