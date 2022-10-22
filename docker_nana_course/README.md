@@ -11,8 +11,8 @@ Link: https://youtu.be/3c-iBn73dDE
     1. [Docker Image vs Container](#docker-image-vs-container)
     2. [Note **](#note1)
 3. [Docker vs Virtal Machine](#docker-vs-virtal-machine)
-4. [Docker Installation]()
-5. [Docker Main commands]()
+4. [Docker Installation](#docker-installation)
+5. [Docker Main commands](#docker-main-commands)
 6. [Debugging a Container]()
 7. [Workflow with a demo project]()
     1. [Developing localy with Containers]()
@@ -144,11 +144,32 @@ https://docs.docker.com/get-docker/
     - https://docs.docker.com/desktop/install/windows-install/ 
 4. **installing Docker on Linux** 
     - https://docs.docker.com/desktop/install/linux-install/ 
-5. **Docker Toolbox** : a bridge between the System and Docker if the OS does not support Docker.
+5. :warning: **Docker Toolbox** :  a bridge between the System and Docker if the OS does not support Docker.
 
 :warning: "Deprecation Notice: This project and repository is now deprecated and is no longer in active development. Please use Docker Desktop instead where possible. Docker Desktop"
 https://github.com/docker-archive/toolbox 
 
 Getting Docker : `Docker version 20.10.18, build b40c2f6` Installed on my Windows 10 machine.
 
+-----------------------------
 
+### Docker Main commands 
+
+1. **Container vs Image** 
+
+- **COLNTAINER** is running environment for **IMAGE**.
+- `Container => application Image  + environment configs + file system.`
+- **Application image** : could be `postgres`, `redis`, `adminer` ....
+- The application image needs, environment config and File system...
+- All this environmental stuff are provided by the Container.
+- The container has its own **Virtual File System**.
+- The contanier also has a **PORT** that is binded to it which make it possible to communicate with the applications running on it.
+
+2. **Tags/ versions**
+
+![tagging](https://stevelaskerblog.files.wordpress.com/2018/03/pushnewtags.gif)
+
+- Every Docker image has a set of versions or tags.
+- `postgres:9.6.1` , here `postgres` is the Image name and `9.6.1` is the version.
+- When we pull an image without specifying the version (`docker pull redis`), docker pulls the latest version.
+- 
