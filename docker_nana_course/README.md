@@ -13,7 +13,8 @@ Link: https://youtu.be/3c-iBn73dDE
 3. [Docker vs Virtal Machine](#docker-vs-virtal-machine)
 4. [Docker Installation](#docker-installation)
 5. [Docker Main commands](#docker-main-commands)
-6. [Debugging a Container]()
+    1. [Commands table 1](#commands_1)
+6. [Debugging a Container](#debugging-a-container)
 7. [Workflow with a demo project]()
     1. [Developing localy with Containers]()
     2. [Docker Compose Running multiple services]()
@@ -178,6 +179,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 
 3. **Some Commands**
 
+<span id="commands_1"></span>
+
 |Command|Description|
 |--|--|
 |`docker images`| Show available Images|
@@ -207,7 +210,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 - "Example, we need version 1 of `appX` and version 2, and they both listenning to 7777, we can avoid the conflict by binding the `appX:1` to host port 77 and the `appX:2` to port 777."
 - The command to do that : `docker run -d -p 77:7777 appX:1` and `docker run -d -p 777:7777 appX:2`, now the host port 77 is binded to the container port 7777.
 
-5. **Debugging a container**
+
+#### Debugging a container
 
 - Troubleshooting the container with `docker logs <container-id/name>`.
 - Get the terminal of the runing container by: `docker exec -it <container-id/name> /bin/bash `.
