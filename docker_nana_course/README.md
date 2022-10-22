@@ -116,3 +116,16 @@ View local running containers with `docker ps`.
 
 ### Docker vs Virtal Machine
 
+- Operation system has 2 layers [Kernal layer + Applications layer].
+- Docker is virtualising the **Applications layer**.
+- Vbox / Vmware is virtualising the **Complete operating system**.
+
+So:
+
+- The Docker image much smaller.
+- Docker containers start and run faster.
+- VMs of any OS can run in any OS, and it is not the case for Docker , why ?
+
+- Docker images are based on Linux kernel (base layer), so there is no compatibility between them and the windows kernel nativly.
+- We can use `Docker toolbox ` which is : " Docker Toolbox allows you to deploy development containers in legacy Windows systems that do not meet the requirements of the new Docker for Windows application."
+
