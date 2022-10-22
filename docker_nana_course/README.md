@@ -185,7 +185,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker pull redis:2.3`| Download the version 2.3 of `redis`|
 |`docker run redis`|Create Container for `redis` image / running an instance of the Image / running a n environment for the image (In an attached mode = should clic CTRL+C to terminate) [This command pulls the image if it not available locally]|
 |`docker run -d redis`|Run a Container for `redis` image (in the background / detached mode)|
-|`docker run -d redis:4.0.1`|Runs the redis of version 4.0.1, if not avaailable, pulls it first|
+|`docker run -d redis:4.0.1`|Runs the redis of version 4.0.1, if not avaailable, pulls it first (d for detached)|
+|`docker run -p <host-port>:<container-port> redis`|Runs the redis image, binding the ports (p for port)|
 |`docker ps`| List the running contaniers|
 |`docker stop <container-id>`| Stop the container (first 4 chars of ID are enough)|
 |`docker start <container-id>`| Start the container|
@@ -193,4 +194,13 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 
 
 4. **Container PORT vs host PORT**
+- The container is just a virtual environment running on the host.
+- Multiple containers can run on the host at the same time.
+- The host has certain  **PORTS** available that can be open to some applications.
+- We have the ability to map a **contanier port** to a **host port**.
+- For example, our container is listening of the port `8000`, we can bind it to the port `80` of our host.
+- in this case the port `8000` is the **internal** port of out container and `80` is the **external** one.
+- That will avoid us the conflict when we use for example the same image in different containers (ability to use diffirent ports).
+- "Example, we need version 1 of `appX` and version 2, and they both listenning to 7777, we can avoid the conflict by binding the `appX:1` to host port 77 and the `appX:2` to port 777."
+- The command to do that : `docker run -d -p 77:7777 appX:1` and `docker run -d -p 777:7777 appX:2`, now the host port 77 is binded to the container port 7777.
 
