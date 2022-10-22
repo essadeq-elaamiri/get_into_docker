@@ -189,8 +189,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker run -p <host-port>:<container-port> redis`|Runs the redis image, binding the ports (p for port)|
 |`docker run --name redis-older redis `| Run Container  with costum name (redis-older)|
 |`docker ps`| List the running contaniers|
-|`docker stop <container-id>`| Stop the container (first 4 chars of ID are enough)|
-|`docker start <container-id>`| Start the container|
+|`docker stop <container-id>`| Stop a running container (first 4 chars of ID are enough)|
+|`docker start <container-id>`| Start a stopped  container|
 |`docker ps -a`| Show all the Containers (Running or Not)|
 |`docker logs <container-id/name>`|Troubleshooting the container|
 |`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[`exit`: to exit the mode]|
@@ -213,3 +213,5 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 - Get the terminal of the runing container by: `docker exec -it <container-id/name> /bin/bash `.
 
 
+
+[1:29:49 - Docker Compose - Running multiple services]
