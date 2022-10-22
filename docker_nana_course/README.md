@@ -9,6 +9,7 @@ Link: https://youtu.be/3c-iBn73dDE
 1. [What is Docker](#what-is-docker)
 2. [What is a Container/Image](#what-is-container-technically)
     1. [Docker Image vs Container](#docker-image-vs-container)
+    2. [Note **](#note1)
 3. [Docker vs Virtal Machine]()
 4. [Docker Installation]()
 5. [Docker Main commands]()
@@ -95,4 +96,23 @@ View local running containers with `docker ps`.
 
 ![image vs container](https://i.stack.imgur.com/Cx1eo.png)
 
+
+#### Note1**:
+
+- Note that when we pull an image from the public repository  with `docker pull postgres:9.6`, docker download the image to our local repo. (if we use `docker run postres:9.6`, it will look for locally , if it is not available it pull it from the public repo.).
+- In the downloading process, we can observe a lof of installing haches, and those are the layers that compose the pulled image.
+- In that point we have an advantage, it is that when there is a change of version for exemple, we download only the changed layers and we keep the layer that did not have any changes.
+
+![pull](https://www.mend.io/wp-content/media/2020/11/Using-docker-pull-command-to-download-an-image-from-Docker-Hub.png)
+
+**Image vs Container**
+
+![vs](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYUqt_FoqIQbuGoUnBoJXXx90t5Tmi2xYDSA&usqp=CAU)
+
+- Image :> is the actual package (not runing, is the artifact).
+- Container :> instance of the image (runing).
+
+-------------------------------------------------
+
+### Docker vs Virtal Machine
 
