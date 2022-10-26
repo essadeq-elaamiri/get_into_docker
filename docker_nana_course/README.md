@@ -207,6 +207,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker-compose -f docker-compose.yaml up`| Start all the listed containers in `docker-compose.yaml` file|
 |`docker-compose -f docker-compose.yaml up -d`| Start all the listed containers in `docker-compose.yaml` file (in detached mode lol)|
 |`docker-compose -f docker-compose.yaml down`|Shutdown the containers|
+|`docker build -t cats-app:1.0.1 .` / `docker build -t <image-name>:<tag> <Dockerfile-location>`|Build our image (-t for tag)|
+
 
 
 4. **Container PORT vs host PORT**
@@ -527,4 +529,32 @@ CMD ["node", "server.js"]
 
 - Lets create the `dockerfile`, it also a part of our application code.
 - Just in the same folder as `server.js` we create the file : [LINK_TO_FILE](.docker_nana_course\application\cats-app\dockerfile)
+
+```dockerfile
+# the file must be nammed as : Dockerfile (with capital D)
+FROM node:16-alpine
+# from image (our app is based on it)=> install node in our image
+# node:16-alpine is the base image of our app now
+ENV MONGO_DB_USERNAME=root MONGO_DB_PASSWORD=root
+# set some env variables to image environment (not recommanded, because if there a change, we should rebuild the image, instead we can set them in docker comose file)
+RUN mkdir -p /home/app
+# create a folder inside of the container
+# RUN runs any linux command | RUN <linux-command>
+COPY . /home/cats-app
+# Copy the current folder content (in the host) to the folder /home/app
+## COPY is executed on the HOST
+CMD ["node", "server.js"]
+# Execute the command (node server.js) on the container
+# entrypoint command
+```
+- The `Dockerfile` must be the name....
+
+- Now let's build our image:
+
+`docker build -t cats-app:1.0.1 .`
+`docker build -t <image-name>:<tag> <Dockerfile-location>`
+
+- `-t` to provid a tag to our image.
+
+
 
