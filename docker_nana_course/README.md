@@ -17,6 +17,7 @@ Link: https://youtu.be/3c-iBn73dDE
 6. [Debugging a Container](#debugging-a-container)
 7. [Workflow with a demo project](#workflow-with-a-demo-project)
     1. [Developing localy with Containers](#developing-localy-with-containers)
+        1. [Docker Network](#docker-network)
     2. [Docker Compose Running multiple services]()
     3. [Dockerfile- Building own Docker image]()
     4. [Private Docker repository (AWS)]()
@@ -197,6 +198,10 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker ps -a`| Show all the Containers (Running or Not)|
 |`docker logs <container-id/name>`|Troubleshooting the container|
 |`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[`exit`: to exit the mode]|
+|`docker network ls` |list the available docker networks|
+|`docker network create mongo-network`| Create our own Docker network |
+|
+`docker run -d  -p27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root  --name mongo_db --net mongo-network mongo`| Running continer to a network (-e for environment variables) |
 
 
 4. **Container PORT vs host PORT**
@@ -254,3 +259,44 @@ And MongoExpress used for the UI : https://hub.docker.com/_/mongo-express
 ```
 
 ![3](./imgs/3.PNG)
+
+##### Docker Network
+
+Now we have mongo and mongo-express, and we should connect them and after connect mongo with our app.
+
+Here we have another Concept: Docker Network
+
+Here Docker creates an isolated Network where the containers can run.
+
+
+In this case when  run 2 containers (mongodb + mongo-express UI) in the  same docker network this two can talk to each other just by the name, no need to port number or ip addresss.
+
+Our node js app, will connect them from the external with the address + port.
+
+In other case we will connect the app with the mongo and mongo-express from the same network, and access the app from the browser (external).
+
+To list the available networks : `docker network ls` 
+Create our network : `docker network create mongo-network`
+
+Run the 2 containers in this network:
+
+```
+> docker run -d  -p27017:27017 \
+    -e MONGO_INITDB_ROOT_USERNAME=root \
+    -e MONGO_INITDB_ROOT_PASSWORD=root \
+    --name mongo_db \
+    --net mongo-network mongo 
+```
+
+Run the `mongo-express` in the same network, and connect it with the `mongo`.
+
+```
+> docker run -d  -p8081:8081 \
+    -e ME_CONFIG_MONGODB_ADMINUSERNAME=root \
+    -e ME_CONFIG_MONGODB_ADMINPASSWORD=root \
+    -e ME_CONFIG_MONGODB_SERVER=mongo_db \
+    --name mongo_express \
+    --net mongo-network mongo-express
+```
+
+![4](./imgs/4.PNG)
