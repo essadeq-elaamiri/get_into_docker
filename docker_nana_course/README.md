@@ -335,7 +335,7 @@ async function main() {
 	console.log('Connected successfully to server');
 	const db = client.db(dbName);
 	const collection = db.collection('cats');
-
+    
 	const findResult = await collection.find({}).toArray();
 	console.log('Found documents =>', findResult);
 
@@ -359,3 +359,12 @@ app.listen(port, ()=>{
 })
 ```
 
+- Now our application is not dockenized but it is connected to the mongo container from the localhost via the provided port 27017.
+
+- Here we are selecting data from our data base
+
+![7](./imgs/7.PNG)
+
+- We can also see that in our mongo express UI
+
+![8](./imgs/8.PNG)

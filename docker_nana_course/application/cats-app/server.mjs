@@ -134,9 +134,9 @@ async function main() {
 	console.log('Connected successfully to server');
 	const db = client.db(dbName);
 	const collection = db.collection('cats');
-	const insertResult = await collection.insertMany([
-        JSON.parse(cats_list_ids)
-    ]);
+	// const insertResult = await collection.insertMany(
+    //     JSON.parse(cats_list_ids)
+    // );
 	const findResult = await collection.find({}).toArray();
 	console.log('Found documents =>', findResult);
 
@@ -149,7 +149,7 @@ main()
   .finally(() => client.close());
 
 app.get('/', async (req, res)=>{
-	cats = main()
+	let cats = await main()
     res.json(cats)
 })
 
