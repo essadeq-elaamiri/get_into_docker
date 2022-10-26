@@ -517,7 +517,14 @@ ENV MONGO_DB_USERNAME=root MONGO_DB_PASSWORD=root
 RUN mkdir -p /home/app
 # create a folder inside of the container
 # RUN runs any linux command | RUN <linux-command>
-
-
-
+COPY . /home/app
+# Copy the current folder content (in the host) to the folder /home/app
+## COPY is executed on the HOST
+CMD ["node", "server.js"]
+# Execute the command (node server.js) on the container
+# entrypoint command
 ```
+
+- Lets create the `dockerfile`, it also a part of our application code.
+- Just in the same folder as `server.js` we create the file : [LINK_TO_FILE](.docker_nana_course\application\cats-app\dockerfile)
+

@@ -1,0 +1,13 @@
+FROM node 
+# from image (our app is based on it)=> install node in our image
+ENV MONGO_DB_USERNAME=root MONGO_DB_PASSWORD=root
+# set some env variables to image environment (not recommanded, because if there a change, we should rebuild the image, instead we can set them in docker comose file)
+RUN mkdir -p /home/app
+# create a folder inside of the container
+# RUN runs any linux command | RUN <linux-command>
+COPY . /home/app
+# Copy the current folder content (in the host) to the folder /home/app
+## COPY is executed on the HOST
+CMD ["node", "server.js"]
+# Execute the command (node server.js) on the container
+# entrypoint command
