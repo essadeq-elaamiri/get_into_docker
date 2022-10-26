@@ -556,5 +556,7 @@ CMD ["node", "server.js"]
 
 - `-t` to provid a tag to our image.
 
+Here is the result
 
+![13](./imgs/13.PNG)
 
