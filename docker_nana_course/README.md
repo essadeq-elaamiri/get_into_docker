@@ -20,7 +20,7 @@ Link: https://youtu.be/3c-iBn73dDE
         1. [Docker Network](#docker-network)
     2. [Docker Compose Running multiple services](#docker-compose-running-multiple-services)
     3. [Dockerfile- Building own Docker image](#dockerfile--building-own-docker-image)
-    4. [Private Docker repository (AWS)]()
+    4. [Private Docker repository (AWS)](#private-docker-repository-aws)
     5. [Deploying our containarized application]()
 8. [Volumes -persisting data]()
 
@@ -588,3 +588,5 @@ Here the result:
 
 
 
+#### Private Docker repository (AWS)
+[02:04:00]
