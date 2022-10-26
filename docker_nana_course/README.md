@@ -560,3 +560,23 @@ Here is the result
 
 ![13](./imgs/13.PNG)
 
+- **Jenkins** : builds image from Dockerfile, just like we did
+
+![14](./imgs/14.PNG)
+
+- Now we start our app to test it:
+
+`docker run cats-app`
+
+Here the result:
+1. The tag should be specified (error if not)
+2. The App throws an exception that it can not find the module `server.js`
+
+
+![15](./imgs/15.PNG)
+
+- **Solution**: provide the correct name and path in `CMD ["node", "server.mjs"]` ==> `CMD ["node", "/home/cats-app/server.mjs"]`
+
+- And everything is OKKK!
+
+![16](./imgs/16.PNG)

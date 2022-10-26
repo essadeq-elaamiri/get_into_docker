@@ -10,6 +10,6 @@ RUN mkdir -p /home/app
 COPY . /home/cats-app
 # Copy the current folder content (in the host) to the folder /home/app
 ## COPY is executed on the HOST
-CMD ["node", "server.js"]
+CMD ["node", "/home/cats-app/server.mjs"]
 # Execute the command (node server.js) on the container
 # entrypoint command
