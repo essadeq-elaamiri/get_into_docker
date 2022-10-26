@@ -208,7 +208,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker-compose -f docker-compose.yaml up -d`| Start all the listed containers in `docker-compose.yaml` file (in detached mode lol)|
 |`docker-compose -f docker-compose.yaml down`|Shutdown the containers|
 |`docker build -t cats-app:1.0.1 .` / `docker build -t <image-name>:<tag> <Dockerfile-location>`|Build our image (-t for tag)|
-
+|`docker rm <docker-id>`| delete a container|
+|`docker rmi <image-id>`|detele an image|
 
 
 4. **Container PORT vs host PORT**
@@ -577,6 +578,7 @@ Here the result:
 
 - **Solution**: provide the correct name and path in `CMD ["node", "server.mjs"]` ==> `CMD ["node", "/home/cats-app/server.mjs"]`
 
-- And everything is OKKK!
+- And everything is OKKK! **After rebuilding the image** [Images can not be overrided, they are read only lool].
 
 ![16](./imgs/16.PNG)
+
