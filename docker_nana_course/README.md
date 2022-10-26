@@ -15,8 +15,8 @@ Link: https://youtu.be/3c-iBn73dDE
 5. [Docker Main commands](#docker-main-commands)
     1. [Commands table 1](#commands_1)
 6. [Debugging a Container](#debugging-a-container)
-7. [Workflow with a demo project]()
-    1. [Developing localy with Containers]()
+7. [Workflow with a demo project](#workflow-with-a-demo-project)
+    1. [Developing localy with Containers](#developing-localy-with-containers)
     2. [Docker Compose Running multiple services]()
     3. [Dockerfile- Building own Docker image]()
     4. [Private Docker repository (AWS)]()
@@ -218,4 +218,27 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 
 
 
-[1:29:49 - Docker Compose - Running multiple services]
+### Workflow with a demo project
+Practical Activity 
+1. Developement 
+2. Continous integration/ Delivery
+3. Deployment
+
+1. **Use case**
+
+    1. We are developing a JavaScript Application that uses MongoDB as DB.
+    2. MongoDB is dowloaded via Docker Hub
+    3. The first version of the application is developped locally and we want to deploy it.
+    4. So we should Create a docker image out of our App and push it to our private repository.
+    5. We will have after that, the possibility to pull our image + MongoDB image in any other server and run them.
+
+![1](imgs/1.PNG)
+
+
+
+#### Developing localy with Containers
+
+1. JS & Nodejs App
+2. Connect it to MongoDB docker container 
+
+![2](imgs/2.PNG)
