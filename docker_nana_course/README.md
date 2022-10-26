@@ -312,4 +312,50 @@ Visit: `http://localhost:8081/`
 - Created our `cat-db` database.
 - Connect our db to Node JS
 
+Here is our app:
+
+```js
+import express from "express"
+import {v4 as uuidv4} from 'uuid';
+import { MongoClient } from "mongodb";
+
+const app = express()
+const port = 3000
+
+// Connection URL
+const url = 'mongodb://root:root@localhost:27017';
+const client = new MongoClient(url);
+
+// Database Name
+const dbName = 'cat-db';
+
+async function main() {
+	// Use connect method to connect to the server
+	await client.connect();
+	console.log('Connected successfully to server');
+	const db = client.db(dbName);
+	const collection = db.collection('cats');
+
+	const findResult = await collection.find({}).toArray();
+	console.log('Found documents =>', findResult);
+
+  return findResult;
+}
+
+main()
+  .then(console.log)
+  .catch(console.error)
+  .finally(() => client.close());
+
+app.get('/', async (req, res)=>{
+	cats = main()
+    res.json(cats)
+})
+
+
+
+app.listen(port, ()=>{
+    console.log(`Server is running on ${port}`)
+})
+```
 
