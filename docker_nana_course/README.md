@@ -199,7 +199,7 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker logs <container-id/name>`|Troubleshooting the container|
 |`docker logs <container-id/name> | tail`|Show the last part of the container logs|
 |`docker logs <container-id/name> -f`|Stream the container logs (Show it in real time ??)|
-|`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[`exit`: to exit the mode]|
+|`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[can be `/bin/bash` or `/bin/sh`][`exit`: to exit the mode]|
 |`docker network ls` |list the available docker networks|
 |`docker network create mongo-network`| Create our own Docker network |
 |
@@ -581,4 +581,10 @@ Here the result:
 - And everything is OKKK! **After rebuilding the image** [Images can not be overrided, they are read only lool].
 
 ![16](./imgs/16.PNG)
+
+- Some command on my Image:
+
+![17](./imgs/17.PNG)
+
+
 
