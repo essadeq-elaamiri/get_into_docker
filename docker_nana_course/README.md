@@ -19,7 +19,7 @@ Link: https://youtu.be/3c-iBn73dDE
     1. [Developing localy with Containers](#developing-localy-with-containers)
         1. [Docker Network](#docker-network)
     2. [Docker Compose Running multiple services](#docker-compose-running-multiple-services)
-    3. [Dockerfile- Building own Docker image]()
+    3. [Dockerfile- Building own Docker image](#dockerfile--building-own-docker-image)
     4. [Private Docker repository (AWS)]()
     5. [Deploying our containarized application]()
 8. [Volumes -persisting data]()
@@ -204,6 +204,9 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker network create mongo-network`| Create our own Docker network |
 |
 `docker run -d  -p27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root  --name mongo_db --net mongo-network mongo`| Running continer to a network (-e for environment variables) |
+|`docker-compose -f docker-compose.yaml up`| Start all the listed containers in `docker-compose.yaml` file|
+|`docker-compose -f docker-compose.yaml up -d`| Start all the listed containers in `docker-compose.yaml` file (in detached mode lol)|
+|`docker-compose -f docker-compose.yaml down`|Shutdown the containers|
 
 
 4. **Container PORT vs host PORT**
@@ -406,7 +409,7 @@ file_name: `mongo-docker-compose.yaml`
 
 ```yaml
 version: '3' # docker-compose versions
-service: ## containers we want to connect
+services: ## containers we want to connect
     mongodb: # that is the container name
         image: monog # that is the image name
         ports:
@@ -434,4 +437,87 @@ service: ## containers we want to connect
 ```
 INFO : https://runnable.com/docker/docker-compose-networking 
 
+- We added the `docker-compose.yaml` file to the application code, just in the same folder as `server.mjs` [LINK_TO_FILE](./docker_nana_course\application\cats-app\docker-compose.yaml).
 
+
+```yaml
+version: '3' # docker-compose versions
+services: ## containers we want to connect
+    mongo_db: # that is the container name
+        image: mongo # that is the image name
+        ports:
+            - 27017:27017 # <host>:<container> ports mappings
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+    mongo_express: #container 2 name
+        image: mongo-express # that is the image name
+        ports:
+            - 8081:8081 # <host>:<container> ports mappings
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
+            - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless
+```
+
+- To run the file content we use :
+
+`docker-compose -f docker-compose.yaml up`
+
+that command starts all the containers in the yaml file.
+
+No container is running 
+
+![9](./imgs/9.PNG)
+
+After the command 
+
+![10](./imgs/10.PNG)
+
+In this phase I was not aable to connect the mongo-express to mongo, because I had a mistake in the name of the mongo container. ==> be careful.
+
+After some correction here and there (with usage of the option `docker-compose -f docker-compose.yaml up  --remove-orphans`)
+
+![11](./imgs/11.PNG)
+
+- ** Oh but where is my database and all my records ???**
+- lol, here is another concept of the containers : **Volumes**
+
+- https://stackoverflow.com/questions/56521547/why-do-i-lose-data-if-docker-restarts 
+
+- https://lovethepenguin.com/docker-you-might-loose-your-data-if-you-do-this-mistake-d3268bc87865
+
+```diff
+! Why this is happening?
+- Despite it is logical that if you delete your container any saved data will be lost, its not for docker newbies, because it needs some time to realize that  the image that is used to create a container has not been updated with the data you created inside the container, so any containers based on the original image will not have any of the extra data that created on a running container of the same image.
+
+```
+- There is no data persistence in the container itself.
+
+- Ok, now i want to stop the container I run using docker-compose file :
+easy
+
+`docker-compose -f docker-compose.yaml down`
+
+![12](./imgs/12.PNG)
+
+#### Dockerfile- Building own Docker image
+
+- Now let's conceder that we have developped our Application, and we tested it, we want to deploy it now.
+- To be deployed, our application should be packaged in its own docker container (docker image).
+- So now we will build our docker image from our application using a dockerfile.
+- **Dockerfile**: it is a blueprint for building images.
+
+
+```dockerfile
+FROM node 
+# from image (our app is based on it)=> install node in our image
+ENV MONGO_DB_USERNAME=root MONGO_DB_PASSWORD=root
+# set some env variables to image environment (not recommanded, because if there a change, we should rebuild the image, instead we can set them in docker comose file)
+RUN mkdir -p /home/app
+# create a folder inside of the container
+# RUN runs any linux command | RUN <linux-command>
+
+
+
+```
