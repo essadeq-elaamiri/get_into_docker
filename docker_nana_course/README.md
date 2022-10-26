@@ -300,3 +300,16 @@ Run the `mongo-express` in the same network, and connect it with the `mongo`.
 ```
 
 ![4](./imgs/4.PNG)
+
+Check if everything  is OK!
+
+![5](./imgs/5.PNG)
+
+Visit: `http://localhost:8081/`
+
+![6](./imgs/6.PNG)
+
+- Created our `cat-db` database.
+- Connect our db to Node JS
+
+
