@@ -242,3 +242,15 @@ Practical Activity
 2. Connect it to MongoDB docker container 
 
 ![2](imgs/2.PNG)
+
+Here is our nodejs app : [app](./application/cats-app/server.mjs)
+
+Pull our MongoDb image :  https://hub.docker.com/_/mongo
+And MongoExpress used for the UI : https://hub.docker.com/_/mongo-express 
+
+```
+> docker pull mongo
+> docker pull mongo-express
+```
+
+![3](./imgs/3.PNG)
