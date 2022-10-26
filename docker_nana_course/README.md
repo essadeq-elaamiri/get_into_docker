@@ -18,8 +18,7 @@ Link: https://youtu.be/3c-iBn73dDE
 7. [Workflow with a demo project](#workflow-with-a-demo-project)
     1. [Developing localy with Containers](#developing-localy-with-containers)
         1. [Docker Network](#docker-network)
-        2. [Docker Compose](#docker-compose)
-    2. [Docker Compose Running multiple services]()
+    2. [Docker Compose Running multiple services](#docker-compose-running-multiple-services)
     3. [Dockerfile- Building own Docker image]()
     4. [Private Docker repository (AWS)]()
     5. [Deploying our containarized application]()
@@ -373,4 +372,66 @@ app.listen(port, ()=>{
 ![8](./imgs/8.PNG)
 
 
-##### Docker Compose
+#### Docker Compose Running multiple services
+- In the previous section we create a connection between 2 container and run them with command line.
+- A lot of pain !! hhh
+- Can we execute this commands in a easier way ?
+- Of course: There is **Docker compose** 
+- Here is for example the docker compose file to run this commands and run the 2 connected containers :
+
+```
+> docker run 
+    -d  
+    -p27017:27017 \
+    -e MONGO_INITDB_ROOT_USERNAME=root \
+    -e MONGO_INITDB_ROOT_PASSWORD=root \
+    --name mongo_db \
+    --net mongo-network 
+    mongo 
+```
+and 
+
+```
+> docker run -d  -p8081:8081 \
+    -e ME_CONFIG_MONGODB_ADMINUSERNAME=root \
+    -e ME_CONFIG_MONGODB_ADMINPASSWORD=root \
+    -e ME_CONFIG_MONGODB_SERVER=mongo_db \
+    --name mongo_express \
+    --net mongo-network mongo-express
+```
+
+
+It is  `.yaml` file
+file_name: `mongo-docker-compose.yaml`
+
+```yaml
+version: '3' # docker-compose versions
+service: ## containers we want to connect
+    mongodb: # that is the container name
+        image: monog # that is the image name
+        ports:
+            - 27017:27017 # <host>:<container> ports mappings
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+    mongo_express: #container 2 name
+        image: monog-express # that is the image name
+        ports:
+            - 8081:8081 # <host>:<container> ports mappings
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
+            - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless
+
+```
+
+- So docker compose is just a structured way to avoid command line pain if we have a lot of containers to be connected and run.
+
+- **Note**: notice that we did not provid the **network to docker compose**, because, it takes care of creating a common Network for the specified containers (if we did not set a custom one).
+
+```diff
++ Docker Compose sets up a single network for your application(s) by default, adding each container for a service to the default network. Containers on a single network can reach and discover every other container on the network.
+```
+INFO : https://runnable.com/docker/docker-compose-networking 
+
+
