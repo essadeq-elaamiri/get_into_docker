@@ -18,6 +18,7 @@ Link: https://youtu.be/3c-iBn73dDE
 7. [Workflow with a demo project](#workflow-with-a-demo-project)
     1. [Developing localy with Containers](#developing-localy-with-containers)
         1. [Docker Network](#docker-network)
+        2. [Docker Compose](#docker-compose)
     2. [Docker Compose Running multiple services]()
     3. [Dockerfile- Building own Docker image]()
     4. [Private Docker repository (AWS)]()
@@ -197,6 +198,8 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker start <container-id>`| Start a stopped  container|
 |`docker ps -a`| Show all the Containers (Running or Not)|
 |`docker logs <container-id/name>`|Troubleshooting the container|
+|`docker logs <container-id/name> | tail`|Show the last part of the container logs|
+|`docker logs <container-id/name> -f`|Stream the container logs (Show it in real time ??)|
 |`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[`exit`: to exit the mode]|
 |`docker network ls` |list the available docker networks|
 |`docker network create mongo-network`| Create our own Docker network |
@@ -368,3 +371,6 @@ app.listen(port, ()=>{
 - We can also see that in our mongo express UI
 
 ![8](./imgs/8.PNG)
+
+
+##### Docker Compose
