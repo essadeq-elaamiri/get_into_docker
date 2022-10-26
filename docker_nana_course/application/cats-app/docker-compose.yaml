@@ -1,0 +1,17 @@
+version: '3' # docker-compose versions
+service: ## containers we want to connect
+    mongodb: # that is the container name
+        image: monog # that is the image name
+        ports:
+            - 27017:27017 # <host>:<container> ports mappings
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+    mongo_express: #container 2 name
+        image: monog-express # that is the image name
+        ports:
+            - 8081:8081 # <host>:<container> ports mappings
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
+            - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless
