@@ -202,8 +202,7 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker exec -it <container-id/name> /bin/bash `|Enter the container in an interactive mode (Container terminal)[can be `/bin/bash` or `/bin/sh`][`exit`: to exit the mode]|
 |`docker network ls` |list the available docker networks|
 |`docker network create mongo-network`| Create our own Docker network |
-|
-`docker run -d  -p27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root  --name mongo_db --net mongo-network mongo`| Running continer to a network (-e for environment variables) |
+|`docker run -d  -p27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root  --name mongo_db --net mongo-network mongo`| Running continer to a network (-e for environment variables) |
 |`docker-compose -f docker-compose.yaml up`| Start all the listed containers in `docker-compose.yaml` file|
 |`docker-compose -f docker-compose.yaml up -d`| Start all the listed containers in `docker-compose.yaml` file (in detached mode lol)|
 |`docker-compose -f docker-compose.yaml down`|Shutdown the containers|
