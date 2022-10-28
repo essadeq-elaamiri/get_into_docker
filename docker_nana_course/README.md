@@ -20,11 +20,11 @@ Link: https://youtu.be/3c-iBn73dDE
         1. [Docker Network](#docker-network)
     2. [Docker Compose Running multiple services](#docker-compose-running-multiple-services)
     3. [Dockerfile- Building own Docker image](#dockerfile--building-own-docker-image)
-    4. [Private Docker repository (AWS)](#private-docker-repository-aws)
-    5. [Deploying our containarized application](#private-docker-repository)
+    4. [Docker repository](#private-docker-repository)
         1. [Creating a private repository on DockerHub](#creating-a-private-repository-on-dockerhub)
         2. [Image Naming in Docker registries](#image-naming-in-docker-registries)
-        2. 
+    5. [Deploying our containarized application]()
+         
 8. [Volumes -persisting data]()
 
 ------------------------
