@@ -23,7 +23,7 @@ Link: https://youtu.be/3c-iBn73dDE
     4. [Docker repository](#private-docker-repository)
         1. [Creating a private repository on DockerHub](#creating-a-private-repository-on-dockerhub)
         2. [Image Naming in Docker registries](#image-naming-in-docker-registries)
-    5. [Deploying our containarized application]()
+    5. [Deploy our containerized application](#deploy-our-containerized-application)
          
 8. [Volumes -persisting data]()
 
@@ -664,4 +664,55 @@ And in the dockerhub
 here is it on the repo :
 
 ![25](./imgs/25.PNG)
+
+#### Deploy our containerized application
+- After packaging our app in a docker image, and save it in a repository, we need to deploy it on a server for example.
+
+- From the server we can pull our image and all the containers needed for it (mongo in our case ..).
+- Using `docker compose`.
+- So in a `cats-app.yaml` (compose) file we write :
+
+```yml
+version: '3'
+services: 
+  cats-app: 
+      image: elaamiri/cats-app:2.0.0
+      ports: 
+          - 5000:3000
+  mongo_db: # that is the container name
+      image: mongo # that is the image name
+      ports:
+          - 27017:27017 # <host>:<container> ports mappings
+      environment:
+          - MONGO_INITDB_ROOT_USERNAME=root
+          - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+  mongo_express: #container 2 name
+      image: mongo-express # that is the image name
+      ports:
+          - 8081:8081 # <host>:<container> ports mappings
+      environment:
+          - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+          - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
+          - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless
+```
+
+This file now is enough to download the application and all related images and run the containers..=> And voilà the application is deployer on the server
+
+**Problem**, we could have a connection problem, between our app and the mongodb.
+So in the connection code we should 
+- change  `mongodb://root:root@localhost:27017`
+- with `mongodb://root:root@mongo_db:27017`
+- `mongodb`is the name of the service or the container (used in docker comose file)
+- We should rebuild the image, tag it, push it and modify the compose file with updated image 
+
+Here is the app:
+
+![26](./imgs/26.PNG)
+And the app
+
+![27](./imgs/27.PNG)
+
+-  As we can see there is no data persistence :
+
+- But everything is looking good :smile:
 
