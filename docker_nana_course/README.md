@@ -24,7 +24,8 @@ Link: https://youtu.be/3c-iBn73dDE
         1. [Creating a private repository on DockerHub](#creating-a-private-repository-on-dockerhub)
         2. [Image Naming in Docker registries](#image-naming-in-docker-registries)
     5. [Deploy our containerized application](#deploy-our-containerized-application)
-8. [Volumes -persisting data]()
+8. [Volumes -persisting data](#volumes--persisting-data)
+    1. [Volumes types ](#volumes-types)
 
 ------------------------
 
@@ -720,3 +721,14 @@ And the app
 
 - But everything is looking good :smile:
 
+### Volumes -persisting data
+
+- Volumes are used for data persistence.
+- Every container has a virtual file system used to temporary persiste data, if we restart the container, we lose it.
+- The concept here is to plug (`mount`) a physical file system (from the host) to the virtual file system of the container .
+- That will make data duplicated on the mounted volmes/
+- Changes in the host pysical volume -> appesr on the container volume 
+- Changes in the host container volume -> appesr on the physical volume 
+- So when the container restarts, it will contains the data stored in the physical volume mounted to it.
+
+#### Volumes types 
