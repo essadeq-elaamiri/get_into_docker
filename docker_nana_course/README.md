@@ -23,6 +23,7 @@ Link: https://youtu.be/3c-iBn73dDE
     4. [Private Docker repository (AWS)](#private-docker-repository-aws)
     5. [Deploying our containarized application](#private-docker-repository)
         1. [Creating a private repository on DockerHub](#creating-a-private-repository-on-dockerhub)
+        2. [Image Naming in Docker registries](#image-naming-in-docker-registries)
         2. 
 8. [Volumes -persisting data]()
 
@@ -648,4 +649,19 @@ In this case `tag` will rename our local image `cats-app:1.0.3` with name `elaam
 And in the dockerhub
 
 ![23](./imgs/23.PNG)
+
+
+- No let's say we have some changes on the app, and we want to rebuild it and push it with other version:
+
+1. Make changes 
+2. Rebuild it 
+
+![24](./imgs/24.PNG)
+
+3. tag it `docker tag cats-app:2.0.0 elaamiri/cats-app:2.0.0`
+4. push it `docker push elaamiri/cats-app:2.0.0`
+
+here is it on the repo :
+
+![25](./imgs/25.PNG)
 

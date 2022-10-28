@@ -157,4 +157,5 @@ app.get('/', async (req, res)=>{
 
 app.listen(port, ()=>{
     console.log(`Server is running on ${port}`)
+	console.log("Server version : 2.0.0")
 })
