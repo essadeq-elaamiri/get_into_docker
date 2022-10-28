@@ -24,7 +24,6 @@ Link: https://youtu.be/3c-iBn73dDE
         1. [Creating a private repository on DockerHub](#creating-a-private-repository-on-dockerhub)
         2. [Image Naming in Docker registries](#image-naming-in-docker-registries)
     5. [Deploy our containerized application](#deploy-our-containerized-application)
-         
 8. [Volumes -persisting data]()
 
 ------------------------
@@ -212,6 +211,9 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker build -t cats-app:1.0.1 .` / `docker build -t <image-name>:<tag> <Dockerfile-location>`|Build our image (-t for tag)|
 |`docker rm <docker-id>`| delete a container|
 |`docker rmi <image-id>`|detele an image|
+|`docker login`|login to docker repositories|
+|`docker tag <imageName>:<tag> <registryName>/<imageName>:<tag>`|tag/ rename image before push it to the registry/ repository|
+|`docker push <registryName>/<imageName>:<tag>`|push image to the registry/ repository|
 
 
 4. **Container PORT vs host PORT**
@@ -666,6 +668,7 @@ here is it on the repo :
 ![25](./imgs/25.PNG)
 
 #### Deploy our containerized application
+
 - After packaging our app in a docker image, and save it in a repository, we need to deploy it on a server for example.
 
 - From the server we can pull our image and all the containers needed for it (mongo in our case ..).
@@ -703,6 +706,7 @@ So in the connection code we should
 - change  `mongodb://root:root@localhost:27017`
 - with `mongodb://root:root@mongo_db:27017`
 - `mongodb`is the name of the service or the container (used in docker comose file)
+- in this cas we do not have even to specify the port (because the services are in the same netwoek, and they locate each other).
 - We should rebuild the image, tag it, push it and modify the compose file with updated image 
 
 Here is the app:
