@@ -21,7 +21,9 @@ Link: https://youtu.be/3c-iBn73dDE
     2. [Docker Compose Running multiple services](#docker-compose-running-multiple-services)
     3. [Dockerfile- Building own Docker image](#dockerfile--building-own-docker-image)
     4. [Private Docker repository (AWS)](#private-docker-repository-aws)
-    5. [Deploying our containarized application]()
+    5. [Deploying our containarized application](#private-docker-repository)
+        1. [Creating a private repository on DockerHub](#creating-a-private-repository-on-dockerhub)
+        2. 
 8. [Volumes -persisting data]()
 
 ------------------------
@@ -587,5 +589,58 @@ Here the result:
 
 
 
-#### Private Docker repository (AWS)
-[02:04:00]
+#### Private Docker repository 
+
+- Creating a private repository on `Amazon ECR`.
+- Creating Reqistry and Registry options
+- Build & tag an image and push them to the Repositpory
+
+##### Creating a private repository on DockerHub
+- We have to have an account on dockerhub
+- We can create a reposotory per image
+- In every repository we can store different versions and tags of an image
+- Here my image `cats-app`
+
+![19](./imgs/19.PNG)
+
+- We create a  repository on `https://hub.docker.com/` with the same name :
+
+![18](./imgs/18.PNG)
+
+More Info : https://jfrog.com/knowledge-base/docker-hub-and-docker-registries-a-beginners-guide/ 
+
+- In order to push our image to the repo we should login to our acount via `docker login`:
+
+![20](./imgs/20.PNG)
+
+- Our image is built already, we are going now to tag it 
+
+##### Image Naming in Docker registries
+
+- `registryDomain/imageName:tag`
+- In dockerhub when we execute `docker pull mongo:4.2` for exemple
+We in reality use a shorthand for this command 
+`docker pull docker.io/library/mongo:4.2 `
+
+- If we are using some other private registries like (AWS, `Amazon ECR`), we should use the fill naming convention, because there no builtin shurthand there for them.
+
+- Now returning to push our Image :
+
+1. Tagging the image :
+
+```
+> docker tag cats-app:1.0.3 elaamiri/cats-app:latest
+```
+
+In this case `tag` will rename our local image `cats-app:1.0.3` with name `elaamiri/cats-app:latest`
+
+![21](./imgs/21.PNG)
+
+
+2. Pushing the image to the repo
+
+```
+> docker push elaamiri/cats-app:latest
+```
+
+![22](./imgs/22.PNG)
