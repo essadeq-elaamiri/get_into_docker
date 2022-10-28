@@ -644,3 +644,8 @@ In this case `tag` will rename our local image `cats-app:1.0.3` with name `elaam
 ```
 
 ![22](./imgs/22.PNG)
+
+And in the dockerhub
+
+![23](./imgs/23.PNG)
+
