@@ -68,6 +68,7 @@ Link: https://youtu.be/3c-iBn73dDE
     - It is just enough to run the containers on the server (After installing the Docker of course == one time effort).
 
 
+[:top: TO_TOP](#content)
 ### What is Container (technically) ?
 - A container is made up of **Images**.
 - It Layers of Images.
@@ -101,6 +102,7 @@ View local running containers with `docker ps`.
 
 ![image vs container](https://i.stack.imgur.com/Cx1eo.png)
 
+[:top: TO_TOP](#content)
 
 #### Note1**:
 
@@ -135,6 +137,7 @@ So:
 - We can use `Docker toolbox ` which is : " Docker Toolbox allows you to deploy development containers in legacy Windows systems that do not meet the requirements of the new Docker for Windows application."
 
 ------------------------------
+[:top: TO_TOP](#content)
 
 ### Docker Installation
 
@@ -179,7 +182,9 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 - Every Docker image has a set of versions or tags.
 - `postgres:9.6.1` , here `postgres` is the Image name and `9.6.1` is the version.
 - When we pull an image without specifying the version (`docker pull redis`), docker pulls the latest version.
-- 
+
+
+[:top: TO_TOP](#content)
 
 3. **Some Commands**
 
@@ -236,6 +241,7 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 - Get the terminal of the runing container by: `docker exec -it <container-id/name> /bin/bash `.
 
 
+[:top: TO_TOP](#content)
 
 ### Workflow with a demo project
 Practical Activity 
@@ -383,6 +389,7 @@ app.listen(port, ()=>{
 
 ![8](./imgs/8.PNG)
 
+[:top: TO_TOP](#content)
 
 #### Docker Compose Running multiple services
 - In the previous section we create a connection between 2 container and run them with command line.
@@ -510,6 +517,8 @@ easy
 
 ![12](./imgs/12.PNG)
 
+[:top: TO_TOP](#content)
+
 #### Dockerfile- Building own Docker image
 
 - Now let's conceder that we have developped our Application, and we tested it, we want to deploy it now.
@@ -593,6 +602,7 @@ Here the result:
 ![17](./imgs/17.PNG)
 
 
+[:top: TO_TOP](#content)
 
 #### Private Docker repository 
 
@@ -722,6 +732,8 @@ And the app
 
 - But everything is looking good :smile:
 
+[:top: TO_TOP](#content)
+
 ### Volumes -persisting data
 
 - Volumes are used for data persistence.
@@ -846,3 +858,11 @@ Commands:
   prune       Remove all unused local volumes
   rm          Remove one or more volumes
 </pre>
+
+[:top: TO_TOP](#content)
+
+-----------------------
+:muscle: DONE ! :clap: :clap: :clap: :clap: 
+
+- **What is next ?**
+- [ ] Kubernetes 
