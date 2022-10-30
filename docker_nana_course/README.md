@@ -25,7 +25,7 @@ Link: https://youtu.be/3c-iBn73dDE
         2. [Image Naming in Docker registries](#image-naming-in-docker-registries)
     5. [Deploy our containerized application](#deploy-our-containerized-application)
 8. [Volumes -persisting data](#volumes--persisting-data)
-    1. [Volumes types ](#volumes-types)
+    1. [Creating valumes Volumes  ](#creating-valumes-volumes)
 
 ------------------------
 
@@ -727,9 +727,65 @@ And the app
 - Every container has a virtual file system used to temporary persiste data, if we restart the container, we lose it.
 - The concept here is to plug (`mount`) a physical file system (from the host) to the virtual file system of the container .
 - That will make data duplicated on the mounted volmes/
-- Changes in the host pysical volume -> appesr on the container volume 
-- Changes in the host container volume -> appesr on the physical volume 
+- Changes in the host pysical volume -> appesr on the container volume :star:
+- Changes in the host container volume -> appesr on the physical volume  :star:
 - So when the container restarts, it will contains the data stored in the physical volume mounted to it.
 
-#### Volumes types 
-2:29:00
+#### Creating valumes Volumes  
+- There are 3 types of volumes (in creation ways):
+
+1. :heavy_check_mark: **Host volumes**
+
+- A host volume can be accessed from within a Docker container and is stored on the host, as per 
+the name. To create a host volume, run:
+
+```bash
+docker run -v /path/on/host:/path/in/container
+```
+- I suggest using a host volume when you need to know where to refer to the data. It’s also the 
+easiest type of volume to use, so it’s ideal for simple projects.
+
+
+2. :heavy_check_mark: **Anonymous volumes**
+
+- The location of anonymous volumes is managed by Docker. Note that it can be difficult to refer 
+to the same volume when it is anonymous. To create an anonymous volume, run:
+
+```bash
+docker run -v /path/in/container ...
+```
+- Anonymous volumes provide flexibility, but they aren’t used as often now that named volumes have 
+been introduced.
+
+3. :heavy_check_mark: **Named volumes**
+
+- Named volumes and anonymous volumes are similar in that Docker manages where they are located. 
+However, as you might guess, named volumes can be referred to by specific names. To create a named 
+volume, run:
+
+```bash
+docker volume create somevolumename
+docker run -v name:/path/in/container ...
+```
+
+- Like anonymous volumes, named volumes provide flexibility, but they are also explicit. This 
+makes them easier to manage.
+
+- We can also specify Docker volumes in your docker-compose.yaml file using the same syntax as 
+the examples above. Here’s an example of a named volume I used in a WordPress Docker container.
+
+```yaml
+version: ..
+services: ..
+    mongodb:
+        image: ...
+        ports: ...
+        volumes:
+            - db_data:/var/lib/mysql # <volume-name>:<path-in-container>
+        ...
+    ...
+volumes:
+    db_data # we declare the list of all the valumes that we gonne need with the containers
+```
+
+
