@@ -215,6 +215,7 @@ Useful Artical [Docker Tagging: Best practices for tagging and versioning docker
 |`docker login`|login to docker repositories|
 |`docker tag <imageName>:<tag> <registryName>/<imageName>:<tag>`|tag/ rename image before push it to the registry/ repository|
 |`docker push <registryName>/<imageName>:<tag>`|push image to the registry/ repository|
+|`> docker volume ls`| list our volumes|
 
 
 4. **Container PORT vs host PORT**
@@ -788,4 +789,60 @@ volumes:
     db_data # we declare the list of all the valumes that we gonne need with the containers
 ```
 
+- So our docker compose file of the cats application will look like this :
 
+```yaml
+version: '3'
+services: 
+  cats-app: 
+        image:  elaamiri/cats-app:3.0.0
+        ports: 
+            - 3000:3000
+  mongo_db: # that is the container name
+        image: mongo # that is the image name
+        ports:
+            - 27017:27017 # <host>:<container> ports mappings
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+        volumes: 
+            - mongodb-volume:/data/db # /data/db is default volume of mongodb
+            # now all the data located in /data/db will be replicated to our host
+            # in a volume referenced with the name mongodb-volume
+  mongo_express: #container 2 name
+        image: mongo-express # that is the image name
+        ports:
+            - 8081:8081 # <host>:<container> ports mappings
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
+            - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless  
+volumes: 
+    mongodb-volume:
+        driver: local # the volume is created on the same Docker host where you run your container
+```
+
+- Our data now will persiste and we will no longer lose it when we restart our container.
+- Our volumes are located on:
+    * `C:\ProgramData\docker\volumes` on Windows (did not find it lol).
+    And that just because the Docker stores the volumes in fact under a virtual machine disk.
+    refer to : https://stackoverflow.com/questions/43181654/locating-data-volumes-in-docker-desktop-windows 
+    * `/var/lib/docker/volumes` on Mac (also about Mac :smile:)
+    * `/var/lib/docker/volumes` on Linux
+
+- We can list our volumes with `> docker volume ls`
+
+![28](./imgs/28.PNG)
+
+<pre>
+Usage:  docker volume COMMAND
+
+Manage volumes
+
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+</pre>

@@ -1,21 +1,28 @@
 version: '3'
 services: 
   cats-app: 
-      image:  elaamiri/cats-app:3.0.0
-      ports: 
-          - 3000:3000
+        image:  elaamiri/cats-app:3.0.0
+        ports: 
+            - 3000:3000
   mongo_db: # that is the container name
-      image: mongo # that is the image name
-      ports:
-          - 27017:27017 # <host>:<container> ports mappings
-      environment:
-          - MONGO_INITDB_ROOT_USERNAME=root
-          - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+        image: mongo # that is the image name
+        ports:
+            - 27017:27017 # <host>:<container> ports mappings
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root # env variabless
+        volumes: 
+            - mongodb-volume:/data/db # /data/db is default volume of mongodb
+            # now all the data located in /data/db will be replicated to our host
+            # in a volume referenced with the name mongodb-volume
   mongo_express: #container 2 name
-      image: mongo-express # that is the image name
-      ports:
-          - 8081:8081 # <host>:<container> ports mappings
-      environment:
-          - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-          - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
-          - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless
+        image: mongo-express # that is the image name
+        ports:
+            - 8081:8081 # <host>:<container> ports mappings
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=root # env variabless
+            - ME_CONFIG_MONGODB_SERVER=mongo_db # env variabless  
+volumes: 
+    mongodb-volume:
+        driver: local # the volume is created on the same Docker host where you run your container
